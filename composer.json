@@ -1,8 +1,8 @@
 {
-    "name": "wucdbm/doctrine-extensions",
+    "name": "wucdbm/symfony-form-types",
     "type": "library",
-    "description": "A custom set of Doctrine Extensions to ease development",
-    "keywords": ["doctrine", "doctrine extensions", "bitmask", "utc date", "utc date time"],
+    "description": "A custom set of Symfony Form Types",
+    "keywords": ["symfony form", "ip 2 long", "entity hidden type"],
     "authors": [
         {
             "name": "Martin Kirilov",
