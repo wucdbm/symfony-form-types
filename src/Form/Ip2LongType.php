@@ -16,7 +16,7 @@ class Ip2LongType extends AbstractType {
         $transformer = new Ip2LongTransformer();
         $builder->addModelTransformer($transformer);
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::SUBMIT, static function (FormEvent $event) {
             $form = $event->getForm();
             $ip = $event->getData();
             if (false === filter_var($ip, FILTER_VALIDATE_IP)) {
