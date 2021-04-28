@@ -2,20 +2,20 @@
 
 namespace Wucdbm\SymfonyFormTypes\DataTransformer;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class EntityToIdTransformer implements DataTransformerInterface {
 
-    /** @var ObjectManager */
-    protected $objectManager;
+    /** @var EntityManagerInterface */
+    protected $em;
 
     /** @var string */
     protected $class;
 
-    public function __construct(ObjectManager $objectManager, string $class) {
-        $this->objectManager = $objectManager;
+    public function __construct(EntityManagerInterface $em, string $class) {
+        $this->em = $em;
         $this->class = $class;
     }
 
@@ -32,7 +32,7 @@ class EntityToIdTransformer implements DataTransformerInterface {
             return null;
         }
 
-        $entity = $this->objectManager
+        $entity = $this->em
             ->getRepository($this->class)
             ->find($id);
 

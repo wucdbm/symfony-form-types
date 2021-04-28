@@ -2,7 +2,7 @@
 
 namespace Wucdbm\SymfonyFormTypes\Form\Doctrine;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -12,12 +12,12 @@ use Wucdbm\SymfonyFormTypes\DataTransformer\EntityToIdTransformer;
 
 class EntityHiddenType extends AbstractType {
 
-    /** @var ObjectManager */
-    private $om;
+    /** @var EntityManagerInterface */
+    private $em;
 
-    /** @param ObjectManager $om */
-    public function __construct(ObjectManager $om) {
-        $this->om = $om;
+    /** @param EntityManagerInterface $em */
+    public function __construct(EntityManagerInterface $em) {
+        $this->em = $em;
     }
 
     /**
@@ -28,7 +28,7 @@ class EntityHiddenType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         /** @var DataTransformerInterface $entityTransformer */
-        $entityTransformer = new $options['transformer']($this->om, $options['class']);
+        $entityTransformer = new $options['transformer']($this->em, $options['class']);
         $builder->addModelTransformer($entityTransformer);
     }
 
